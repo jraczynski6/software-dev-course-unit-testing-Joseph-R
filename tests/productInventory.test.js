@@ -6,3 +6,5 @@ describe("The calculateDiscount() function", () => {
         expect(productInventory.calculateDiscount(100, .1)).toEqual(90);
     });
 });
+
+

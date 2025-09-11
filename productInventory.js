@@ -12,8 +12,8 @@ function calculateDiscount(price, discountRate) {
     if (typeof price !== 'number' || typeof discountRate !== 'number') return null;
     if (discountRate < 0 || discountRate > 1) return null;
     //calculating
-    /*let discountAmount =*/ return price * (discountRate / 100);
-    //return price - discountAmount;
+    /*let discountAmount =*/ 
+    return price - (price * discountRate);
 };
 
 
@@ -29,4 +29,24 @@ function sortInventory(inventory, key) {
     return [];
 }
 
-module.exports = { calculateDiscount: calculateDiscount, filterProducts: filterProducts, sortInventory: sortInventory};
+module.exports = { calculateDiscount: calculateDiscount, filterProducts: filterProducts, sortInventory: sortInventory };
+
+
+/* Test Ideas:
+    
+    calculateDiscount(price, discountRate):
+        positive - correct discount price when both numbers are valid
+        negative - price or discountRate is missing/null
+        edge - 100% discount, no discount
+
+    filterProducts(products, callback)
+        positive - returns filtered products if inStock is true 
+        negative - empty/invalid product list or callback
+        edge - empty array, no match, all match
+        
+    sortInventory(inventory, key)
+        positive - correctly sort by price and name
+        negative - invalid inventory, no key
+        edge - empty array, duplicate key     
+
+*/
