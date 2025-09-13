@@ -7,29 +7,47 @@ const products =
     { name: "Keyboard", price: 100, inStock: false }        
 ];
 
-
 function calculateDiscount(price, discountRate) {
     if (typeof price !== 'number' || typeof discountRate !== 'number') return null;
-    if (discountRate < 0 || discountRate > 1) return null;
-    //calculating
-    /*let discountAmount =*/ 
+    if (discountRate < 0 || discountRate > 1) return null; 
     return price - (price * discountRate);
 };
-
+/*
+console.log(calculateDiscount(100, .1));//pos
+console.log(calculateDiscount(10, .1));//neg
+console.log(calculateDiscount(5, 100));//edge
+console.log(calculateDiscount(5, 0));// edge
+*/
 
 function filterProducts(products, callback) {
     if (!Array.isArray(products) || typeof callback !== 'function') return [];
-    // TODO: Implement filtering logic
-    return [];
+    return products.filter(callback);
 }
+
+/*
+console.log(filterProducts(products, (objectName) => objectName.price >= 800)); // pos
+console.log(filterProducts("str",(objectName) => objectName.price >= 800)); // neg
+console.log(filterProducts([],(objectName) => objectName.price >= 800)); //edge
+*/
+
 
 function sortInventory(inventory, key) {
     if (!Array.isArray(inventory) || typeof key !== 'string') return [];
-    // TODO: Implement sorting logic
-    return [];
+    
+    return inventory.sort((a, b) => a[key] - b[key]);
 }
 
-module.exports = { calculateDiscount: calculateDiscount, filterProducts: filterProducts, sortInventory: sortInventory };
+/*
+console.log(sortInventory(products, "price"));//pos
+console.log(sortInventory(products, 2));//neg
+console.log(sortInventory([], "price"));//edge
+*/
+
+module.exports = { 
+    calculateDiscount: calculateDiscount,
+    filterProducts: filterProducts,
+    sortInventory: sortInventory 
+    };
 
 
 /* Test Ideas:
